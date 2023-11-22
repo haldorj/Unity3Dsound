@@ -24,14 +24,14 @@ public class SoundPlayer : MonoBehaviour
         {
             // Load an audio file  from a text file
             string audioFilePath = ReadAudioFilePathFromFile();
-            AudioSource audioSource = GetComponent<AudioSource>();
+            audioSource = GetComponent<AudioSource>();
             //3D settings
             audioSource.spatialize = true;
             audioSource.spatialBlend = 1.0f; // 1.0 means full 3D spatialization
             audioSource.spatializePostEffects = true;
             audioSource.spatialize = true;
             audioSource.maxDistance = 400.0f;
-            GameObject player = GetComponent<GameObject>();
+            //GameObject player = GetComponent<GameObject>();
             
             if (!string.IsNullOrEmpty(audioFilePath))
             {
@@ -48,7 +48,7 @@ public class SoundPlayer : MonoBehaviour
         {
             if (audioData != null && audioData.Length > 0)
             {
-                AudioSource audioSource = GetComponent<AudioSource>();
+                audioSource = GetComponent<AudioSource>();
                 audioSource.clip = AudioClip.Create("LoadedClip", audioData.Length, 1, 44100, false);
                 audioSource.clip.SetData(audioData, 0);
                 audioSource.Play(0);
@@ -91,7 +91,7 @@ public class SoundPlayer : MonoBehaviour
    
             string p1 = Application.dataPath; // get the path 
             p1 = p1.Replace("/Assets", "/Assets/Audios/myfile.wav"); // replace the app address with the following
-           // Debug.Log(p1.ToString());
+            Debug.Log(p1.ToString());
             return p1.ToString();
             
         }
