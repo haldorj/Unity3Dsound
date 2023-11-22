@@ -19,6 +19,8 @@ public class SoundPlayer : MonoBehaviour
         public Transform player;
         [SerializeField]
         float Radius = 5.0f;
+
+        [SerializeField] private string filePath;
         // used awake to read and load the file 
         void Awake()
         {
@@ -90,37 +92,47 @@ public class SoundPlayer : MonoBehaviour
         {
    
             string p1 = Application.dataPath; // get the path 
+<<<<<<< Updated upstream
             p1 = p1.Replace("/Assets", "/Assets/Audios/myfile.wav"); // replace the app address with the following
             Debug.Log(p1.ToString());
+=======
+            p1 = p1.Replace("/Assets", "/Assets/Audios/" + filePath + ".wav"); // replace the app address with the following
+           // Debug.Log(p1.ToString());
+>>>>>>> Stashed changes
             return p1.ToString();
             
         }
 
         private void LateUpdate()
         {
+            
             RotateAround();
             Vector3 playerPosition = Camera.main.transform.position; // player position
             Vector3 soundPosition = transform.position; // source of audio // rotating cube
             float distance = Vector3.Distance(playerPosition, soundPosition);
            // Debug.Log(soundPosition.ToString());
            //audioSource.transform.position = soundPosition
-           audioSource.volume = Mathf.Clamp01(1.0f - distance / maxDistance);   //  adjust volume based on distance
-          
+           
+           if (audioSource)
+               audioSource.volume = Mathf.Clamp01(1.0f - distance / maxDistance);   //  adjust volume based on distance
+           else
+               Debug.Log("Didn't reach audio source");
+
         }
         void RotateAround()
-            {
-                float angle = Time.time * orbitSpeed;
-                // Calculate the new position of the cube around the center
-                Vector3 offset = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)) * Radius; // You can change radius
-                Vector3 newPosition = player.transform.position + offset;
+        {
+            float angle = Time.time * orbitSpeed;
+            // Calculate the new position of the cube around the center
+            Vector3 offset = new Vector3(Mathf.Sin(angle), 0, Mathf.Cos(angle)) * Radius; // You can change radius
+            Vector3 newPosition = player.transform.position + offset;
 
-                // Set the position of the cube
-                transform.position = newPosition;
-        
-                // Make the cube look at the center cube to face it while rotating
-                transform.LookAt(player);
-                Debug.Log("New Position: " + newPosition);
-            }
+            // Set the position of the cube
+            transform.position = newPosition;
+    
+            // Make the cube look at the center cube to face it while rotating
+            transform.LookAt(player);
+            Debug.Log("New Position: " + newPosition);
+        }
 }
 
 // part 1
