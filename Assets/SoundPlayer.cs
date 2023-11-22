@@ -92,14 +92,9 @@ public class SoundPlayer : MonoBehaviour
         {
    
             string p1 = Application.dataPath; // get the path 
-<<<<<<< Updated upstream
-            p1 = p1.Replace("/Assets", "/Assets/Audios/myfile.wav"); // replace the app address with the following
-            Debug.Log(p1.ToString());
-=======
             p1 = p1.Replace("/Assets", "/Assets/Audios/" + filePath + ".wav"); // replace the app address with the following
            // Debug.Log(p1.ToString());
->>>>>>> Stashed changes
-            return p1.ToString();
+           return p1.ToString();
             
         }
 
@@ -131,7 +126,7 @@ public class SoundPlayer : MonoBehaviour
     
             // Make the cube look at the center cube to face it while rotating
             transform.LookAt(player);
-            Debug.Log("New Position: " + newPosition);
+            //Debug.Log("New Position: " + newPosition);
         }
 }
 
